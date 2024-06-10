@@ -22,3 +22,9 @@ Enter the container.
 ```
 sudo docker exec -it i_llvm_18_1_6 bash
 ```
+
+Or if the container exists, start it and then attach.
+```
+sudo docker start i_llvm_18_1_6
+sudo docker attach i_llvm_18_1_6
+```
