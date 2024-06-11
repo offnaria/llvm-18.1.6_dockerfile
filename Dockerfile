@@ -10,7 +10,12 @@ RUN apt update && \
 	ninja-build \
 	cmake \
 	python3 \
-	build-essential
+	build-essential \
+	flex \
+	bison \
+	libelf-dev \
+	bc \
+	libssl-dev
 RUN echo "${USERNAME}:${PASSWORD}" | chpasswd && \
     gpasswd -a ${USERNAME} sudo && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -26,7 +31,7 @@ RUN cd llvm-project && \
 	-DLLVM_ENABLE_RUNTIMES="libcxx;libunwind;libcxxabi" \
 	-DLLVM_INCLUDE_DOCS=OFF \
 	-DLLVM_INCLUDE_TESTS=OFF \
-	-DLLVM_TARGETS_TO_BUILD="host" \
+	-DLLVM_TARGETS_TO_BUILD="host;BPF" \
 	-Wno-dev && \
     ninja -C build && \
     sudo ninja -C build install
