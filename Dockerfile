@@ -15,7 +15,10 @@ RUN apt update && \
 	bison \
 	libelf-dev \
 	bc \
-	libssl-dev
+	libssl-dev \
+ 	rsync \
+  	libcap-dev \
+   	pahole
 RUN echo "${USERNAME}:${PASSWORD}" | chpasswd && \
     gpasswd -a ${USERNAME} sudo && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
